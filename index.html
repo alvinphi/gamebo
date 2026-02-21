@@ -2,7 +2,7 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <title>Game Đoán Chữ Tiếng Việt 123</title>
+    <title>Game Đoán Chữ Tiếng Việt 2026</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -50,8 +50,9 @@
       }
       #hintText {
         margin-top: 20px;
-        font-size: 18px;
-        color: red;
+        font-size: 14px;
+        color: rgb(255, 104, 104);
+        font-style: italic;
       }
     </style>
   </head>
@@ -70,6 +71,7 @@
         "Động vật": [
           { word: "con mèo", hint: "Bắt chuột" },
           { word: "con chó", hint: "Giữ nhà, sủa gâu gâu" },
+          { word: "con chuột", hint: "Chạy trong nhà, ăn gạo" },
           { word: "con voi", hint: "Có vòi dài" },
           { word: "con hổ", hint: "Sống trong rừng" },
           { word: "con sư tử", hint: "Chúa sơn lâm" },
@@ -79,7 +81,6 @@
           { word: "con cá", hint: "Sống dưới nước" },
           { word: "con chim", hint: "Biết bay" },
           { word: "con khỉ", hint: "Leo cây giỏi" },
-          { word: "con ngựa", hint: "Chạy rất nhanh" },
           { word: "con bò", hint: "Cho sữa" },
           { word: "con dê", hint: "Ăn cỏ, kêu be be" },
           { word: "con lợn", hint: "Nuôi lấy thịt" },
@@ -121,28 +122,6 @@
           { word: "xe ba gác", hint: "Có ba bánh" },
           { word: "xe công nông", hint: "Ở nông thôn" },
         ],
-        "Rau củ": [
-          { word: "cà rốt", hint: "Màu cam tốt cho mắt" },
-          { word: "bắp cải", hint: "Lá cuộn tròn" },
-          { word: "củ khoai", hint: "Có thể luộc ăn" },
-          { word: "củ cải", hint: "Màu trắng" },
-          { word: "rau muống", hint: "Thường xào tỏi" },
-          { word: "rau cải", hint: "Màu xanh" },
-          { word: "cà chua", hint: "Màu đỏ" },
-          { word: "dưa leo", hint: "Ăn sống mát" },
-          { word: "bí đỏ", hint: "Màu cam" },
-          { word: "bí xanh", hint: "Dùng nấu canh" },
-          { word: "đậu bắp", hint: "Có nhớt" },
-          { word: "đậu que", hint: "Dài và xanh" },
-          { word: "hành lá", hint: "Gia vị" },
-          { word: "tỏi", hint: "Mùi hăng" },
-          { word: "gừng", hint: "Cay" },
-          { word: "ngô", hint: "Màu vàng" },
-          { word: "su hào", hint: "Tròn màu xanh" },
-          { word: "măng", hint: "Mọc từ tre" },
-          { word: "khoai tây", hint: "Làm khoai chiên" },
-          { word: "khoai lang", hint: "Vị ngọt" },
-        ],
         "Gia đình": [
           { word: "ông nội", hint: "Bố của bố" },
           { word: "bà nội", hint: "Mẹ của bố" },
@@ -164,11 +143,11 @@
           { word: "ông bà", hint: "Ông và bà" },
         ],
         "Trường học": [
-          { word: "lớp học", hint: "Nơi học bài" },
+          { word: "lớp học", hint: "Nơi các bạn nhỏ học bài" },
           { word: "sân trường", hint: "Nơi vui chơi" },
           { word: "bảng đen", hint: "Viết phấn" },
-          { word: "giáo viên", hint: "Dạy học" },
-          { word: "học sinh", hint: "Đi học" },
+          { word: "giáo viên", hint: "Người Dạy học" },
+          { word: "học sinh", hint: "Người Đi học" },
           { word: "bàn ghế", hint: "Dùng để ngồi" },
           { word: "cặp sách", hint: "Đựng vở" },
           { word: "bút mực", hint: "Viết chữ đẹp" },
@@ -309,12 +288,8 @@
           { word: "màu xanh", hint: "Giống lá cây" },
           { word: "màu vàng", hint: "Giống mặt trời" },
           { word: "màu cam", hint: "Giống quả cam" },
-          { word: "màu hồng", hint: "Giống hoa hồng" },
           { word: "màu trắng", hint: "Giống mây" },
           { word: "màu đen", hint: "Màu buổi tối" },
-          { word: "màu nâu", hint: "Giống đất" },
-          { word: "màu xám", hint: "Giữa trắng và đen" },
-          { word: "màu bạc", hint: "Giống kim loại" },
           { word: "màu xanh lá", hint: "Màu lá cây" },
           { word: "màu xanh dương", hint: "Màu biển" },
         ],
@@ -325,27 +300,20 @@
           { word: "cái mũi", hint: "Dùng để ngửi" },
           { word: "cái miệng", hint: "Dùng để nói" },
           { word: "đôi tai", hint: "Dùng để nghe" },
-          { word: "tóc", hint: "Trên đầu" },
           { word: "đầu gối", hint: "Ở chân" },
           { word: "trái tim", hint: "Đập trong ngực" },
           { word: "lá phổi", hint: "Giúp thở" },
           { word: "cái lưỡi", hint: "Nếm vị" },
-          { word: "ngón tay", hint: "Ở bàn tay" },
-          { word: "ngón chân", hint: "Ở bàn chân" },
-          { word: "bờ vai", hint: "Mang cặp" },
-          { word: "lưng", hint: "Phía sau cơ thể" },
-          { word: "bụng", hint: "Chứa thức ăn" },
-          { word: "răng", hint: "Nhai thức ăn" },
-          { word: "môi", hint: "Bao quanh miệng" },
-          { word: "má", hint: "Hai bên mặt" },
+          { word: "cái lưng", hint: "Phía sau cơ thể" },
+          { word: "cái bụng", hint: "Chứa thức ăn" },
+          { word: "hàm răng", hint: "Nhai thức ăn" },
         ],
         "Biển cả": [
           { word: "con cá", hint: "Sống dưới nước" },
           { word: "con tôm", hint: "Có vỏ cứng" },
           { word: "con cua", hint: "Có càng" },
-          { word: "sóng biển", hint: "Nhấp nhô" },
+          { word: "sóng biển", hint: "ở biển và nhấp nhô" },
           { word: "bãi cát", hint: "Chơi ở biển" },
-          { word: "vỏ sò", hint: "Nhặt trên cát" },
           { word: "tàu biển", hint: "Chạy trên nước" },
           { word: "hải đăng", hint: "Chiếu sáng ban đêm" },
           { word: "san hô", hint: "Dưới biển" },
@@ -353,13 +321,8 @@
           { word: "cá heo", hint: "Bơi nhanh" },
           { word: "cá mập", hint: "Răng sắc" },
           { word: "thuyền buồm", hint: "Chạy bằng gió" },
-          { word: "đảo nhỏ", hint: "Giữa biển" },
-          { word: "nước mặn", hint: "Vị mặn" },
-          { word: "biển xanh", hint: "Màu xanh" },
-          { word: "cảng biển", hint: "Nơi tàu neo đậu" },
           { word: "lưới cá", hint: "Dùng bắt cá" },
-          { word: "ngư dân", hint: "Đánh cá" },
-          { word: "sao biển", hint: "Hình ngôi sao" },
+          { word: "ngư dân", hint: "người đánh cá" },
         ],
         "Không gian": [
           { word: "trái đất", hint: "Hành tinh chúng ta sống" },
@@ -382,12 +345,10 @@
           { word: "kính thiên văn", hint: "Xem các vì sao" },
         ],
         "Lễ hội": [
-          { word: "tết nguyên đán", hint: "Năm mới âm lịch" },
+          { word: "tết nguyên đán", hint: "Năm mới âm lịch, có pháo hoa" },
           { word: "tết trung thu", hint: "Có đèn lồng" },
           { word: "giáng sinh", hint: "Có ông già noel" },
-          { word: "hội chợ", hint: "Mua bán vui chơi" },
           { word: "rước đèn", hint: "Đi cầm đèn lồng" },
-          { word: "trống hội", hint: "Gõ trong lễ hội" },
           { word: "đèn lồng", hint: "Trang trí trung thu" },
           { word: "bánh trung thu", hint: "Ăn dịp trung thu" },
           { word: "lì xì", hint: "Tiền mừng tuổi" },
@@ -397,7 +358,7 @@
           { word: "bóng đá", hint: "Đá bằng chân" },
           { word: "bóng rổ", hint: "Ném vào rổ" },
           { word: "bơi lội", hint: "Bơi dưới nước" },
-          { word: "chạy bộ", hint: "Di chuyển nhanh" },
+          { word: "chạy bộ", hint: "Di chuyển nhanh bằng chân" },
           { word: "đạp xe", hint: "Đi bằng xe đạp" },
           { word: "cầu lông", hint: "Đánh cầu" },
           { word: "thể dục", hint: "Rèn luyện sức khỏe" },
@@ -419,64 +380,6 @@
           { word: "điều hòa", hint: "Làm lạnh phòng" },
           { word: "gương", hint: "Soi mặt" },
           { word: "thảm", hint: "Trải sàn" },
-        ],
-      };
-      const topics2 = {
-        "Bầu trời": [
-          { word: "máy bay", hint: "Phương tiện bay trên trời" },
-          { word: "mặt trời", hint: "Chiếu sáng ban ngày" },
-          { word: "đám mây", hint: "Trắng và bay lơ lửng" },
-          { word: "cầu vồng", hint: "Xuất hiện sau cơn mưa" },
-          { word: "ngôi sao", hint: "Lấp lánh vào ban đêm" },
-        ],
-        "Xe cộ": [
-          { word: "xe máy", hint: "Phương tiện 2 bánh phổ biến" },
-          { word: "ô tô", hint: "Xe 4 bánh" },
-          { word: "xe buýt", hint: "Chở nhiều hành khách" },
-          { word: "tàu hỏa", hint: "Chạy trên đường ray" },
-          { word: "xe đạp", hint: "Phải đạp bằng chân" },
-        ],
-        "Động vật": [
-          { word: "con mèo", hint: "Thích bắt chuột" },
-          { word: "con chó", hint: "Giữ nhà" },
-          { word: "con voi", hint: "Có cái vòi dài" },
-          { word: "con cá", hint: "Sống dưới nước" },
-          { word: "con gà", hint: "Gáy ò ó o" },
-        ],
-        "Trái cây": [
-          { word: "quả táo", hint: "Màu đỏ hoặc xanh" },
-          { word: "quả chuối", hint: "Màu vàng, cong cong" },
-          { word: "quả cam", hint: "Nhiều vitamin C" },
-          { word: "quả xoài", hint: "Vị ngọt khi chín" },
-          { word: "quả dưa hấu", hint: "Ruột đỏ, nhiều nước" },
-        ],
-        "Đồ dùng học tập": [
-          { word: "bút chì", hint: "Dùng để viết và vẽ" },
-          { word: "quyển vở", hint: "Dùng để ghi bài" },
-          { word: "cục tẩy", hint: "Dùng để xóa chữ" },
-          { word: "thước kẻ", hint: "Dùng để kẻ đường thẳng" },
-          { word: "cặp sách", hint: "Đựng sách vở đi học" },
-        ],
-        "Gia đình": [
-          { word: "ông bà", hint: "Sinh ra bố mẹ" },
-          { word: "bố mẹ", hint: "Chăm sóc con cái" },
-          { word: "anh trai", hint: "Con trai lớn hơn mình" },
-          { word: "chị gái", hint: "Con gái lớn hơn mình" },
-          { word: "em bé", hint: "Nhỏ tuổi nhất nhà" },
-        ],
-        "Thức ăn": [
-          { word: "cơm trắng", hint: "Ăn mỗi ngày" },
-          { word: "bánh mì", hint: "Ăn sáng phổ biến" },
-          { word: "mì tôm", hint: "Chỉ cần đổ nước sôi" },
-          { word: "kẹo ngọt", hint: "Trẻ em rất thích" },
-          { word: "kem lạnh", hint: "Ăn vào mùa hè" },
-        ],
-        "Thiên nhiên": [
-          { word: "núi cao", hint: "Rất cao và to" },
-          { word: "biển xanh", hint: "Nhiều nước mặn" },
-          { word: "rừng cây", hint: "Có nhiều cây xanh" },
-          { word: "dòng sông", hint: "Nước chảy liên tục" },
-          { word: "cơn mưa", hint: "Nước rơi từ trên trời" },
         ],
       };
       let currentTopic = "";

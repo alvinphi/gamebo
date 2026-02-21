@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Game Đoán Chữ Tiếng Việt</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(to bottom, #87CEEB, #ffffff);
+    padding: 40px;
+	height : 100%;
+}
+
+h1 {
+    color: #333;
+}
+
+#topic {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+#word {
+    font-size: 70px;
+    letter-spacing: 8px;
+    margin: 30px 0;
+    font-weight: bold;
+    color: #222;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.hint-btn {
+    background-color: orange;
+    color: white;
+}
+
+.show-btn {
+    background-color: green;
+    color: white;
+}
+
+.next-btn {
+    background-color: blue;
+    color: white;
+}
+
+#hintText {
+    margin-top: 20px;
+    font-size: 18px;
+    color: red;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎮 Game Đoán Chữ</h1>
+
+<div id="topic"></div>
+<div id="word"></div>
+
+<button class="hint-btn" onclick="showHint()">Gợi ý</button>
+<button class="show-btn" onclick="showAnswer()">Hiện kết quả</button>
+<button class="next-btn" onclick="nextWord()">Từ mới</button>
+
+<div id="hintText"></div>
+
+<script>
+const vowels = "aeiouăâêôơưáàảãạắằẳẵặấầẩẫậéèẻẽẹếềểễệíìỉĩịóòỏõọốồổỗộớờởỡợúùủũụứừửữự";
+
+const topics = {
+    "Bầu trời": [
+        { word: "máy bay", hint: "Phương tiện bay trên trời" },
+        { word: "mặt trời", hint: "Chiếu sáng ban ngày" },
+        { word: "đám mây", hint: "Trắng và bay lơ lửng" },
+        { word: "cầu vồng", hint: "Xuất hiện sau cơn mưa" },
+        { word: "ngôi sao", hint: "Lấp lánh vào ban đêm" }
+    ],
+
+    "Xe cộ": [
+        { word: "xe máy", hint: "Phương tiện 2 bánh phổ biến" },
+        { word: "ô tô", hint: "Xe 4 bánh" },
+        { word: "xe buýt", hint: "Chở nhiều hành khách" },
+        { word: "tàu hỏa", hint: "Chạy trên đường ray" },
+        { word: "xe đạp", hint: "Phải đạp bằng chân" }
+    ],
+
+    "Động vật": [
+        { word: "con mèo", hint: "Thích bắt chuột" },
+        { word: "con chó", hint: "Giữ nhà" },
+        { word: "con voi", hint: "Có cái vòi dài" },
+        { word: "con cá", hint: "Sống dưới nước" },
+        { word: "con gà", hint: "Gáy ò ó o" }
+    ],
+
+    "Trái cây": [
+        { word: "quả táo", hint: "Màu đỏ hoặc xanh" },
+        { word: "quả chuối", hint: "Màu vàng, cong cong" },
+        { word: "quả cam", hint: "Nhiều vitamin C" },
+        { word: "quả xoài", hint: "Vị ngọt khi chín" },
+        { word: "quả dưa hấu", hint: "Ruột đỏ, nhiều nước" }
+    ],
+
+    "Đồ dùng học tập": [
+        { word: "bút chì", hint: "Dùng để viết và vẽ" },
+        { word: "quyển vở", hint: "Dùng để ghi bài" },
+        { word: "cục tẩy", hint: "Dùng để xóa chữ" },
+        { word: "thước kẻ", hint: "Dùng để kẻ đường thẳng" },
+        { word: "cặp sách", hint: "Đựng sách vở đi học" }
+    ],
+
+    "Gia đình": [
+        { word: "ông bà", hint: "Sinh ra bố mẹ" },
+        { word: "bố mẹ", hint: "Chăm sóc con cái" },
+        { word: "anh trai", hint: "Con trai lớn hơn mình" },
+        { word: "chị gái", hint: "Con gái lớn hơn mình" },
+        { word: "em bé", hint: "Nhỏ tuổi nhất nhà" }
+    ],
+
+    "Thức ăn": [
+        { word: "cơm trắng", hint: "Ăn mỗi ngày" },
+        { word: "bánh mì", hint: "Ăn sáng phổ biến" },
+        { word: "mì tôm", hint: "Chỉ cần đổ nước sôi" },
+        { word: "kẹo ngọt", hint: "Trẻ em rất thích" },
+        { word: "kem lạnh", hint: "Ăn vào mùa hè" }
+    ],
+
+    "Thiên nhiên": [
+        { word: "núi cao", hint: "Rất cao và to" },
+        { word: "biển xanh", hint: "Nhiều nước mặn" },
+        { word: "rừng cây", hint: "Có nhiều cây xanh" },
+        { word: "dòng sông", hint: "Nước chảy liên tục" },
+        { word: "cơn mưa", hint: "Nước rơi từ trên trời" }
+    ]
+};
+
+let currentTopic = "";
+let currentWord = "";
+let currentHint = "";
+
+function removeVietnameseTones(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function hideVowels(word) {
+    let noTone = removeVietnameseTones(word.toLowerCase());
+    let result = "";
+
+    for (let i = 0; i < word.length; i++) {
+        if (vowels.includes(noTone[i])) {
+            result += "_";
+        } else {
+            result += word[i];
+        }
+    }
+    return result;
+}
+
+function nextWord() {
+    const topicNames = Object.keys(topics);
+    currentTopic = topicNames[Math.floor(Math.random() * topicNames.length)];
+
+    const words = topics[currentTopic];
+    const randomItem = words[Math.floor(Math.random() * words.length)];
+
+    currentWord = randomItem.word;
+    currentHint = randomItem.hint;
+
+    document.getElementById("topic").innerHTML = "📚 Chủ đề: " + currentTopic;
+    document.getElementById("word").innerHTML = hideVowels(currentWord);
+    document.getElementById("hintText").innerHTML = "";
+}
+
+function showHint() {
+    document.getElementById("hintText").innerHTML = "💡 Gợi ý: " + currentHint;
+}
+
+function showAnswer() {
+    document.getElementById("word").innerHTML = currentWord;
+}
+
+nextWord();
+</script>
+
+</body>
+</html>
